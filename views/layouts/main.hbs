@@ -3,10 +3,16 @@
     <head>
         <title>Twitter</title>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <base href="/">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- FIXME       NE MARCHE PAS CE CSS !!!-->
+        <link rel="stylesheet" href="/css/main.css">
     </head>
     <body>
-    <h1>MAIN</h1>
-        {{{ body }}}
+        <h1>MAIN</h1>
+        {{> topbar }}
+        <div class="container-fluid">
+            {{{ body }}}
+        </div>
     </body>
 </html>
