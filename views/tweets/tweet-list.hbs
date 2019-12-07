@@ -5,8 +5,14 @@
             <div class="profile-container b">
                 {{> profile }}
             </div>
-            <div class="flex-fill b">
-                tweets
+            <div class="flex-fill d-flex flex-column b">
+                {{#each tweets}}
+                <div class="card tweet-element b">
+                    <div class="card-body">
+                        {{ content }}
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
