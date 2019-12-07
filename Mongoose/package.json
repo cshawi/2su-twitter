@@ -1,15 +1,77 @@
 {
-  "name": "Mongoose",
-  "version": "1.0.0",
+  "_from": "mongoose@^5.7.13",
+  "_id": "mongoose@5.7.13",
+  "_inBundle": false,
+  "_integrity": "sha512-MoTCETTIfXU1PqIYc+YAkhSB3uzK5xseh6ysAUnoOowkqS66OjBJtsL/bcgAKi6XfMYkFU6M1abKyuL7k//xeg==",
+  "_location": "/mongoose",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "mongoose@^5.7.13",
+    "name": "mongoose",
+    "escapedName": "mongoose",
+    "rawSpec": "^5.7.13",
+    "saveSpec": null,
+    "fetchSpec": "^5.7.13"
+  },
+  "_requiredBy": [
+    "/Mongoose"
+  ],
+  "_resolved": "https://registry.npmjs.org/mongoose/-/mongoose-5.7.13.tgz",
+  "_shasum": "d8ebbc15cfb19d014cf1fbd4b7af413d75952d46",
+  "_spec": "mongoose@^5.7.13",
+  "_where": "/Users/guilmarc/Repositories/Shawinigan/2SU/Dyma-NodeJS/mongoose",
+  "author": "",
+  "bundleDependencies": false,
+  "dependencies": {
+    "mongoose": "^5.7.13"
+  },
+  "deprecated": false,
   "description": "",
+  "devDependencies": {
+    "acorn": "5.7.3",
+    "acquit": "1.x",
+    "acquit-ignore": "0.1.x",
+    "acquit-require": "0.1.x",
+    "async": "2.6.2",
+    "babel-loader": "7.1.4",
+    "babel-preset-es2015": "6.24.1",
+    "benchmark": "2.1.4",
+    "bluebird": "3.5.5",
+    "chalk": "2.4.2",
+    "cheerio": "1.0.0-rc.2",
+    "co": "4.6.0",
+    "dox": "0.3.1",
+    "eslint": "5.16.0",
+    "highlight.js": "9.1.0",
+    "lodash.isequal": "4.5.0",
+    "lodash.isequalwith": "4.4.0",
+    "marked": "0.6.2",
+    "mocha": "5.x",
+    "moment": "2.x",
+    "mongodb-topology-manager": "1.0.11",
+    "mongoose-long": "0.2.1",
+    "node-static": "0.7.11",
+    "object-sizeof": "1.3.0",
+    "promise-debug": "0.1.1",
+    "pug": "2.0.3",
+    "q": "1.5.1",
+    "semver": "5.5.0",
+    "uuid": "2.0.3",
+    "uuid-parse": "1.0.0",
+    "validator": "10.8.0",
+    "webpack": "4.16.4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "keywords": [],
+  "license": "ISC",
   "main": "mongoose.js",
+  "name": "mongoose",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "mongoose": "^5.7.13"
-  }
+  "version": "1.0.0"
 }
