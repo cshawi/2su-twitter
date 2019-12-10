@@ -21,13 +21,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "kareem": "^2.3.1",
     "mongodb": "^3.3.5",
-    "mongoose": "^5.7.13",
+    "mongoose": "^5.8.0",
     "morgan": "^1.9.1",
-    "mpath": "^0.6.0",
-    "mquery": "^3.2.2",
-    "nodemon": "^2.0.1",
-    "sliced": "^1.0.1"
+    "nodemon": "^2.0.1"
   }
 }

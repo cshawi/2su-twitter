@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan")
 const path = require("path");
-const db = require("./database")
 const hbs = require("express-handlebars");
+const db = require("./database")
 const port  = process.env.PORT || 3000;
 const routing = require("./routes");
 
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/views/"));
 app.set("view engine", "hbs");
 app.engine( 'hbs', hbs( {
     extname: 'hbs',

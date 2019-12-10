@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
 
-const tweetSchema = schema({
+const tweetSchema = mongoose.Schema({
   content: {
     type: String,
-    maxLength: [140, 'Tweet too long'],
-    minLength: [1, 'Tweet too short'],
-    require: true
+    maxlength: [140, 'Tweet too long'],
+    minlength: [1, 'Tweet too short'],
+    required: true
   }
 }) 
 
