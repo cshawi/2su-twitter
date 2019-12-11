@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const tweetSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   content: {
     type: String,
     maxlength: [140, 'Tweet too long'],
@@ -9,6 +9,6 @@ const tweetSchema = mongoose.Schema({
   }
 }) 
 
-const Tweet = mongoose.model('tweet', tweetSchema);
+const Tweet = mongoose.model('Tweet', schema);
 
 module.exports = Tweet;
