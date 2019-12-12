@@ -9,13 +9,13 @@ const routing = require("./routes");
 const errorHandler = require('errorhandler'); 
 
 app.set("views", path.join(__dirname, "/views/"));
-app.set("view engine", "hbs");
 app.engine( 'hbs', hbs( {
     extname: 'hbs',
     defaultLayout: 'main',
-    layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
+    layoutsdir: __dirname + '/views/layouts/',
+    partialsdir: __dirname + '/views/partials/'
 }));
+app.set("view engine", "hbs");
 
 app.use(morgan("short"));
 app.use(express.static(path.join(__dirname, "public")));

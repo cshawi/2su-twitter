@@ -48,7 +48,9 @@ exports.delete = async (req, res, next) => {
     const id = req.params.id;
     await queries.delete(id);
     const tweets = await queries.all();
-    res.render('partials/tweet-list', {tweets});
+    //FIXME: Partials doesn't execute javascript
+    res.render('partials/tweet-list', {tweets, layout: false});
+    //res.redirect('/tweets/');
   } catch (e) {
     next(e);
   }
