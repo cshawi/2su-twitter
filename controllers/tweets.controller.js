@@ -11,7 +11,16 @@ exports.viewList = async (req, res, next) => {
 
 exports.viewNew = async (req, res, next) => {
   try {
-    res.render("tweets/tweet-form", {}); //FIXME: Static form location doesn't work (tweets/tweet-form)
+    res.render("tweets/tweet-form", {});
+  } catch (e) {
+    next(e);
+  }
+}
+
+exports.viewEdit = async (req, res, next) => {
+  try {
+    const tweet = await queries.get(req.params.id)
+    res.render('tweets/tweet-form', { tweet })
   } catch (e) {
     next(e);
   }
@@ -36,10 +45,14 @@ exports.read = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
+  const id = req.params.id;
   try {
-    
+    await queries.update(req.params.id, req.body)
+    res.redirect('/tweets');
   } catch (e) {
-    next(e);
+    const errors = Object.keys(e.errors).map(key => e.errors[key].message);
+    const tweet = await queries.get(id);
+    res.render('tweets/tweet-form', { errors, tweet: tweet });
   }
 }
 
@@ -48,9 +61,7 @@ exports.delete = async (req, res, next) => {
     const id = req.params.id;
     await queries.delete(id);
     const tweets = await queries.all();
-    //FIXME: Partials doesn't execute javascript
     res.render('partials/tweet-list', {tweets, layout: false});
-    //res.redirect('/tweets/');
   } catch (e) {
     next(e);
   }

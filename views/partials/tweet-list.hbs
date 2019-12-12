@@ -1,12 +1,12 @@
 <script src="/javascripts/tweets/tweet.js"></script>
 {{#if tweets}}
     {{#each tweets}}
-    <div class="card tweet-element b">
+    <div class="card tweet-element">
         <div class="card-body">
-            <div class="card-text">
+            <a class="card-text" href="tweets/edit/{{ _id }}">
                 {{ content }}
-            </div>
-            <button class="btn-danger mt-2 float-right" tweetId={{ _id }}> Delete </button>        
+            </a>      
+            <button class="btn-danger mt-2 mx-1 float-right" tweetId={{ _id }}> Delete </button>  
         </div>
     </div>
     {{/each}}

@@ -4,13 +4,13 @@
       {{> profile }}
     </div>
     <div class="flex-fill">
-      <form class="card" method="POST" action="/tweets/" >
+      <form class="card" method="POST" action={{#if tweet }} "/tweets/update/{{ tweet._id }}" {{else}} "/tweets/" {{/if}}  >
         <div class="card-header">
           Write a tweet
         </div>
         <div class="card-body">
           <div class="form-group"> 
-            <textarea class="form-control" name="content" placeholder="What is happening"></textarea>
+            <textarea class="form-control" name="content" placeholder="What is happening">{{#if tweet}}{{ tweet.content }}{{/if}}</textarea>
           </div>
           {{#if errors }}
             <ul class="my-2">
