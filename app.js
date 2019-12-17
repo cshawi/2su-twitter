@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+exports.app = app;
 const morgan = require("morgan")
 const path = require("path");
 const hbs = require("express-handlebars");
@@ -7,6 +8,7 @@ const db = require("./database")
 const port  = process.env.PORT || 3000;
 const routing = require("./routes");
 const errorHandler = require('errorhandler'); 
+const config = require('./config/session.config');
 
 app.set("views", path.join(__dirname, "/views/"));
 app.engine( 'hbs', hbs( {
@@ -40,4 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 */
 
+//console.log("TEST")
+
 app.listen(port);
+
