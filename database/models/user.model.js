@@ -13,6 +13,10 @@ schema.statics.hashPassword = (password) => {
   return bcrypt.hash(password, 12);
 }
 
+schema.methods.comparePassword = function(password) {
+  return bcrypt.compare(password, this.local.password);
+}
+
 const User = mongoose.model('User', schema);
 
 

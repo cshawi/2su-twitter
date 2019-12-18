@@ -1,13 +1,5 @@
 const User = require('../database/models/user.model');
 
-exports.all = () => {
-  
-}
-
-exports.get = (id) => {
-  
-}
-
 exports.create = async (user) => {
   try{
     const hashedPassword = await User.hashPassword(user.password);
@@ -24,10 +16,11 @@ exports.create = async (user) => {
   }
 }
 
-exports.update = (id, tweet) => {
-  
+exports.findUserPerEmail = (email) => {
+  return User.findOne( { 'local.email' : email }).exec();
 }
 
-exports.delete = (id) => {
-  
+exports.findUserPerId = (id) => {
+  return User.findById(id).exec();
 }
+
