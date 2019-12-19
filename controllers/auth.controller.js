@@ -13,7 +13,7 @@ exports.signin = (req, res, next) => {
     if(err) {
       next(err);
     } else if (!user) {
-      res.render('auth/auth-form', { errors: [info.message] });
+      res.render('auth/auth-form', { errors: [info.message], isAuthenticated: req.isAuthenticated(), currentUser: req.user });
     } else {
       req.login(user, (err) => {
         if(err) next(err);
