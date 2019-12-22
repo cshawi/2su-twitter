@@ -3,6 +3,6 @@ const controller = require('../controllers/auth.controller');
 
 router.get('/signin/form', controller.signinForm);
 router.post('/signin/', controller.signin);
-router.delete('/signout', controller.signout);
+router.get('/signout', controller.signout);
 
 module.exports = router;
