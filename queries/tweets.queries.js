@@ -1,7 +1,7 @@
 const Tweet = require('../database/models/tweet.model');
 
 exports.count = () => {
-  return Tweet.count().exec()
+  return Tweet.countDocuments().exec()
 }
 
 exports.all = () => {
