@@ -2,9 +2,10 @@ const router = require("express").Router();
 const tweetsRoutes = require('./tweets.routes');
 const usersRoutes = require('./users.routes');
 const authRoutes = require('./auth.routes');
-const auth = require('../middlewares/auth.middleware')
 
-router.use('/tweets', auth, tweetsRoutes);
+const guard = require('../middlewares/guard.middleware');
+
+router.use('/tweets', guard, tweetsRoutes);
 router.use('/users', usersRoutes);
 router.use('/auth', authRoutes);
 

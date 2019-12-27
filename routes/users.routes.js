@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const controller = require('../controllers/users.controller');
-const auth = require('../middlewares/auth.middleware');
+const guard = require('../middlewares/guard.middleware');
 
 router.get("/signup/form", controller.viewSignUpForm);
 router.post('/signup', controller.signUp);
-router.post('/update/image', auth, controller.uploadImage);
+router.post('/update/image', guard, controller.uploadImage);
 //router.get('/edit/:id', controller.viewEdit);
 
 //router.post('/', controller.create);
