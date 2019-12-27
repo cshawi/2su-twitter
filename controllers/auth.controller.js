@@ -1,5 +1,5 @@
-//const queries = require('../queries/tweets.queries');
-const passport = require('passport');
+const queries = require('../queries/users.queries.js');
+
 exports.signinForm = (req, res, next) => {
   try {
       res.render('auth/auth-form', {errors: null});
@@ -8,27 +8,33 @@ exports.signinForm = (req, res, next) => {
   }
 };
 
-exports.signin = (req, res, next) => {
+exports.signin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const user = await findUserPerEmail(email);
-    if (user) {
-      const match = await user.comparePassword(password);
-      if (match) {
-        req.login(user);
-        res.redirect('/tweets');
-      } else {
-        res.render('auth/auth-form', { error: 'Wrong password' });
-      }
-    } else {
-      res.render('auth/auth-form', { error: 'User not found' });
-    }
+    const user = await queries.findByCredentials(req.body.email, req.body.password)
+    const token = await user.generateAuthToken();
+
+    res.cookie('jwt', token);
+    res.redirect('/');
+    //res.render('tweets/tweet', { isAuthenticated: true, currentUser: user })
   } catch(e) {
-    next(e);
+    //FIXME: Find out why the e error is a single error an not an array like in tweets
+    //const errors = Object.keys(e.errors).map(key => e.errors[key].message);
+    res.render('auth/auth-form', { errors: [e.message] });
   }
 };
 
-exports.signout = (req, res, next) => {
-  req.logout();
-  res.redirect('/auth/signin/form');
+exports.signout = async (req, res, next) => {
+  try {
+    
+    req.user.credentials.tokens = req.user.credentials.tokens.filter( (token)=> {
+      return token.token !== req.token;
+    });
+    
+    await req.user.save();
+    
+    res.clearCookie('jwt');
+    res.redirect('auth/signin/form');
+} catch (e) {
+    res.status(500).send(e);
+}
 };
