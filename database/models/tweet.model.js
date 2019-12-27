@@ -6,6 +6,11 @@ const schema = mongoose.Schema({
     maxlength: [140, 'Tweet too long'],
     minlength: [1, 'Tweet too short'],
     required: true
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }) 
 

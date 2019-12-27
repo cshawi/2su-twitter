@@ -3,7 +3,7 @@ const queries = require('../queries/tweets.queries');
 exports.viewList = async (req, res, next) => {
   try {
     const tweets = await queries.all();
-    res.render("tweets/tweet", { tweets });
+    res.render("tweets/tweet", { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
   } catch (e) {
     next(e);
   }
@@ -11,7 +11,8 @@ exports.viewList = async (req, res, next) => {
 
 exports.viewNew = async (req, res, next) => {
   try {
-    res.render("tweets/tweet-form", {});
+    const count = await queries.count();
+    res.render("tweets/tweet-form", { tweetCount: count, isAuthenticated: req.isAuthenticated(), currentUser: req.user});
   } catch (e) {
     next(e);
   }
@@ -19,8 +20,9 @@ exports.viewNew = async (req, res, next) => {
 
 exports.viewEdit = async (req, res, next) => {
   try {
+    const count = await queries.count();
     const tweet = await queries.get(req.params.id)
-    res.render('tweets/tweet-form', { tweet })
+    res.render('tweets/tweet-form', { tweetCount: count, tweet, isAuthenticated: req.isAuthenticated(), currentUser: req.user })
   } catch (e) {
     next(e);
   }
@@ -28,19 +30,15 @@ exports.viewEdit = async (req, res, next) => {
 
 exports.create = async (req, res, next) => {
   try {
-    await queries.create(req.body);
+    await queries.create( {
+      ...req.body,
+      author: req.user._id
+    });
     res.redirect('/tweets');
   } catch (e) {
+    const count = await queries.count();
     const errors = Object.keys(e.errors).map(key => e.errors[key].message);
-    res.render('tweets/tweet-form', { errors });
-  }
-}
-
-exports.read = async (req, res, next) => {
-  try {
-    
-  } catch (e) {
-    next(e);
+    res.render('tweets/tweet-form', { tweetCount: count, errors, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
   }
 }
 
@@ -52,7 +50,8 @@ exports.update = async (req, res, next) => {
   } catch (e) {
     const errors = Object.keys(e.errors).map(key => e.errors[key].message);
     const tweet = await queries.get(id);
-    res.render('tweets/tweet-form', { errors, tweet: tweet });
+    const count = await queries.count();
+    res.render('tweets/tweet-form', { tweetCount: count, errors, tweet: tweet, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
   }
 }
 

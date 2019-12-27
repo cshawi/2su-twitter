@@ -1,3 +1,19 @@
-<div>
-  Profile
+<script src="/javascripts/profile.js" ></script>
+<div class="d-flex flex-column mr-3 bg-white">
+  <form class="d-flex flex-row justify-content-center align-items-center p-3" action="/users/update/image" method="POST" enctype="multipart/form-data" id="form-container">
+    <input type="file" class="d-none" name="avatar" id="input-avatar">
+    <img src="{{ currentUser.avatar }}" class="img-fluid" id="image-profile">
+  </form>
+  <div class="d-flex flex-row justify-content-center align-items-center">
+    <p>{{currentUser.username}} ({{ currentUser.credentials.email }})</p>
+  </div>
+
+  <div class="text-center d-flex flex-row justify-content-center align-items-center">
+    <div class="flex-fill">
+      <p><strong>Tweets</strong><br> <span class="text-primary" id="tweetCount">{{tweetCount}}</span> </p>
+    </div>
+    <div class="flex-fill">
+      <p><strong>Following</strong><br><span class="text-primary">-</spanclass="text-primary"></p>
+    </div>
+  </div>
 </div>

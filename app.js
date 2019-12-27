@@ -1,5 +1,13 @@
 const express = require("express");
 const app = express();
+exports.app = app;
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 const morgan = require("morgan")
 const path = require("path");
 const hbs = require("express-handlebars");
@@ -7,6 +15,7 @@ const db = require("./database")
 const port  = process.env.PORT || 3000;
 const routing = require("./routes");
 const errorHandler = require('errorhandler'); 
+const auth = require('./middlewares/auth.middleware');
 
 app.set("views", path.join(__dirname, "/views/"));
 app.engine( 'hbs', hbs( {
@@ -21,7 +30,9 @@ app.use(morgan("short"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(auth);
 app.use(routing);
+app.use(errorHandler);
 
 /*
 if (process.env.NODE_ENV === 'production') {
@@ -40,4 +51,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 */
 
+//console.log("TEST")
+
 app.listen(port);
+
