@@ -6,6 +6,10 @@ window.addEventListener('DOMContentLoaded', () => {
 function bindTweet(){
   const buttons = document.querySelectorAll('.btn-danger');
   const tweetContainer = document.querySelector('#tweet-list-container')
+  const tweetCount = document.querySelector('#tweetCount');
+
+  tweetCount.innerHTML = buttons.length;
+
   buttons.forEach(b => {
 
     b.addEventListener('click', async ($event) => {
