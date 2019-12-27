@@ -10,6 +10,6 @@ const options = {
     useFindAndModify : false
 };
 
-mongoose.connect(ATLAS_CONNECTION_STRING, options)
+mongoose.connect(LOCAL_CONNECTION_STRING, options)
 .then(() => { console.log('Successfully connected to MongoDB') })
 .catch(err => console.log(err) )

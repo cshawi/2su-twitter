@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 exports.app = app;
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 const morgan = require("morgan")
 const path = require("path");
 const hbs = require("express-handlebars");
@@ -9,8 +13,8 @@ const port  = process.env.PORT || 3000;
 const routing = require("./routes");
 const errorHandler = require('errorhandler'); 
 
-require('./config/session.config');
-require('./config/passport.config');
+require('./middlewares/auth.middleware')
+require('./config/jwt.config');
 
 app.set("views", path.join(__dirname, "/views/"));
 app.engine( 'hbs', hbs( {

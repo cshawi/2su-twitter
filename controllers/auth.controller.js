@@ -9,18 +9,23 @@ exports.signinForm = (req, res, next) => {
 };
 
 exports.signin = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if(err) {
-      next(err);
-    } else if (!user) {
-      res.render('auth/auth-form', { errors: [info.message], isAuthenticated: req.isAuthenticated(), currentUser: req.user });
+  try {
+    const { email, password } = req.body;
+    const user = await findUserPerEmail(email);
+    if (user) {
+      const match = await user.comparePassword(password);
+      if (match) {
+        req.login(user);
+        res.redirect('/tweets');
+      } else {
+        res.render('auth/auth-form', { error: 'Wrong password' });
+      }
     } else {
-      req.login(user, (err) => {
-        if(err) next(err);
-        else res.redirect('/tweets');
-      });
+      res.render('auth/auth-form', { error: 'User not found' });
     }
-  })(req, res, next)
+  } catch(e) {
+    next(e);
+  }
 };
 
 exports.signout = (req, res, next) => {
