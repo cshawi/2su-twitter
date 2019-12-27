@@ -8,8 +8,11 @@ app.use(cookieParser());
 const dotenv = require('dotenv');
 dotenv.config();
 
+const path = require('path');
+const favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+
 const morgan = require("morgan")
-const path = require("path");
 const hbs = require("express-handlebars");
 const db = require("./database")
 const port  = process.env.PORT || 3000;
